@@ -120,3 +120,8 @@
     flex-direction: column;
   }
 }
+
+.shawarma {
+  text-decoration: none;
+  color: inherit;
+}
