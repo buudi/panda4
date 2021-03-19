@@ -23,35 +23,43 @@ const RegisterForm = () => {
     >
       <Heading>Register:</Heading>
       <br />
-      <FormControl isRequired>
-        <FormLabel>Name</FormLabel>
-        <Input bg="white" placeholder="name"></Input>
+      <form>
+        <FormControl isRequired>
+          <FormLabel>Name</FormLabel>
+          <Input bg="white" placeholder="name"></Input>
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel mt={3}>Email</FormLabel>
+          <Input bg="white" placeholder="email"></Input>
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel mt={3}>Role</FormLabel>
+          <Select bg="white" placeholder="Select role">
+            <option value="1">Admin</option>
+            <option value="2">Moderator</option>
+            <option value="3">Reviewer</option>
+          </Select>
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel mt={3}>password</FormLabel>
+          <InputGroup size="md">
+            <Input
+              bg="white"
+              type={show ? "text" : "password"}
+              placeholder="Enter password"
+            />
+            <InputRightElement width="4.5rem">
+              <Button h="1.75rem" size="sm" onClick={() => setShow(!show)}>
+                {show ? "Hide" : "Show"}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </FormControl>
 
-        <FormLabel mt={3}>Email</FormLabel>
-        <Input bg="white" placeholder="email"></Input>
-        <FormLabel mt={3}>Role</FormLabel>
-        <Select bg="white" placeholder="Select role">
-          <option value="1">Admin</option>
-          <option value="2">Moderator</option>
-          <option value="3">Reviewer</option>
-        </Select>
-        <FormLabel mt={3}>password</FormLabel>
-        <InputGroup size="md">
-          <Input
-            bg="white"
-            type={show ? "text" : "password"}
-            placeholder="Enter password"
-          />
-          <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={() => setShow(!show)}>
-              {show ? "Hide" : "Show"}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
-      <Button type="submit" mt={8} colorScheme="blue">
-        Register
-      </Button>
+        <Button type="submit" mt={8} colorScheme="blue">
+          Register
+        </Button>
+      </form>
     </Box>
   );
 };

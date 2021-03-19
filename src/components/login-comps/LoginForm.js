@@ -23,26 +23,30 @@ const LoginForm = () => {
     >
       <Heading>Login:</Heading>
       <br />
-      <FormControl isRequired>
-        <FormLabel>email</FormLabel>
-        <Input bg="white" type="email" placeholder="email"></Input>
-        <FormLabel mt={3}>password</FormLabel>
-        <InputGroup size="md">
-          <Input
-            bg="white"
-            type={show ? "text" : "password"}
-            placeholder="Enter password"
-          />
-          <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={() => setShow(!show)}>
-              {show ? "Hide" : "Show"}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
-      <Button type="submit" mt={6} colorScheme="blue">
-        Login
-      </Button>
+      <form>
+        <FormControl isRequired>
+          <FormLabel>email</FormLabel>
+          <Input bg="white" type="email" placeholder="email"></Input>
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel mt={3}>password</FormLabel>
+          <InputGroup size="md">
+            <Input
+              bg="white"
+              type={show ? "text" : "password"}
+              placeholder="Enter password"
+            />
+            <InputRightElement width="4.5rem">
+              <Button h="1.75rem" size="sm" onClick={() => setShow(!show)}>
+                {show ? "Hide" : "Show"}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </FormControl>
+        <Button type="submit" mt={6} colorScheme="blue">
+          Login
+        </Button>
+      </form>
     </Box>
   );
 };
