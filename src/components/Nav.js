@@ -19,15 +19,20 @@ const Nav = () => {
         </Box>
         <Spacer />
         <Box>
-          <Link href="/register">
-            <Button bg="#D6C21D" color={colors.btnBg} mr="4">
-              Register
+          <Link href="/login">
+            <Button
+              color="#D6C21D"
+              border={0}
+              _hover={{ background: "#D6C21D", color: colors.btnBg }}
+              mr={4}
+              variant="outline"
+            >
+              Log in
             </Button>
           </Link>
-
-          <Link href="/login">
+          <Link href="/register">
             <Button bg="#D6C21D" color={colors.btnBg}>
-              Log in
+              Register
             </Button>
           </Link>
         </Box>
