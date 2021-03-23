@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 export async function getStaticProps(context) {
-  const res = await fetch("http://143.198.235.244/api");
+  const res = await fetch(`${process.env.API_ADDRESS}/api`);
   const data = await res.json();
 
   return {
