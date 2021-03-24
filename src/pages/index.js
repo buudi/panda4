@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 export async function getStaticProps(context) {
-  const res = await fetch(`${process.env.API_ADDRESS}/api`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api`);
   const data = await res.json();
 
   return {
@@ -30,7 +30,7 @@ export default function Home({ data }) {
           <br />
           <UnorderedList>
             {data.map((names) => (
-              <ListItem>{names.name}</ListItem>
+              <ListItem key={names.id}>{names.name}</ListItem>
             ))}
           </UnorderedList>
         </Box>
