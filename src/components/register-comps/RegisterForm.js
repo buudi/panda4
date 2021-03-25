@@ -10,11 +10,12 @@ import {
   Button,
   InputRightElement,
   Select,
-  RequiredIndicator,
+  Spinner,
 } from "@chakra-ui/react";
 
 const RegisterForm = () => {
   const [show, setShow] = useState(false);
+  const [spin, setSpin] = useState(false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,6 +24,7 @@ const RegisterForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setSpin(true);
     axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/register`, {
         name: name,
@@ -36,6 +38,7 @@ const RegisterForm = () => {
         setEmail("");
         setRole("");
         setPassword("");
+        setSpin(false);
       })
       .catch((err) => console.log(`axios error: ${err}`));
   };
@@ -101,9 +104,15 @@ const RegisterForm = () => {
           </InputGroup>
         </FormControl>
 
-        <Button type="submit" mt={8} colorScheme="blue">
-          Register
-        </Button>
+        {spin ? (
+          <Button type="submit" mt={8} colorScheme="blue">
+            <Spinner />
+          </Button>
+        ) : (
+          <Button type="submit" mt={8} colorScheme="blue">
+            Register
+          </Button>
+        )}
       </form>
     </Box>
   );
