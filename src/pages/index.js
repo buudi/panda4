@@ -1,4 +1,6 @@
 import Head from "next/head";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import Main from "../components/Main";
 import {
   Box,
@@ -8,15 +10,19 @@ import {
   ListItem,
 } from "@chakra-ui/react";
 
-export async function getStaticProps(context) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api`);
-  const data = await res.json();
+export default function Home() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/api`)
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-  return {
-    props: { data },
-  };
-}
-export default function Home({ data }) {
   return (
     <>
       <Head>
