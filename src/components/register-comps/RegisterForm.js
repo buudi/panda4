@@ -20,6 +20,7 @@ const RegisterForm = () => {
   const [show, setShow] = useState(false);
   const [spin, setSpin] = useState(false);
   const [alertCard, setAlertCard] = useState(false);
+  const [errorStatus, setErrorStatus] = useState(false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -37,7 +38,13 @@ const RegisterForm = () => {
         password: password,
       })
       .then((res) => {
-        console.log(`axios response: ${res}`);
+        const daString = res.data;
+        if (
+          daString.indexOf("duplicate key value violates unique constraint") !=
+          -1
+        ) {
+          setErrorStatus(true);
+        }
         setName("");
         setEmail("");
         setRole("");
@@ -57,20 +64,29 @@ const RegisterForm = () => {
     >
       <Heading>Register:</Heading>
       <br />
-      {alertCard && (
-        <div>
-          <Alert borderRadius="20px" status="success">
-            <AlertIcon />
-            <span>
-              Registred!{" "}
-              <Link color="#6656CA" href="/login">
-                Log in here
-              </Link>
-            </span>
-          </Alert>
-          <br />
-        </div>
-      )}
+      {alertCard &&
+        (errorStatus ? (
+          <div>
+            <Alert borderRadius="20px" status="error">
+              <AlertIcon />
+              <span>This email already exists!</span>
+            </Alert>
+            <br />
+          </div>
+        ) : (
+          <div>
+            <Alert borderRadius="20px" status="success">
+              <AlertIcon />
+              <span>
+                Registred!{" "}
+                <Link color="#6656CA" href="/login">
+                  Log in here
+                </Link>
+              </span>
+            </Alert>
+            <br />
+          </div>
+        ))}
 
       <form onSubmit={handleSubmit}>
         <FormControl isRequired>
