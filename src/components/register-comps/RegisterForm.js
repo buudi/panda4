@@ -11,11 +11,15 @@ import {
   InputRightElement,
   Select,
   Spinner,
+  Alert,
+  AlertIcon,
+  Link,
 } from "@chakra-ui/react";
 
 const RegisterForm = () => {
   const [show, setShow] = useState(false);
   const [spin, setSpin] = useState(false);
+  const [alertCard, setAlertCard] = useState(false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -39,6 +43,7 @@ const RegisterForm = () => {
         setRole("");
         setPassword("");
         setSpin(false);
+        setAlertCard(true);
       })
       .catch((err) => console.log(`axios error: ${err}`));
   };
@@ -52,6 +57,21 @@ const RegisterForm = () => {
     >
       <Heading>Register:</Heading>
       <br />
+      {alertCard && (
+        <div>
+          <Alert borderRadius="20px" status="success">
+            <AlertIcon />
+            <span>
+              Registred!{" "}
+              <Link color="#6656CA" href="/login">
+                Log in here
+              </Link>
+            </span>
+          </Alert>
+          <br />
+        </div>
+      )}
+
       <form onSubmit={handleSubmit}>
         <FormControl isRequired>
           <FormLabel>Name</FormLabel>
