@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import {
   Input,
   Heading,
@@ -8,11 +9,27 @@ import {
   InputGroup,
   InputRightElement,
   Button,
-  Select,
 } from "@chakra-ui/react";
 
 const LoginForm = () => {
   const [show, setShow] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        setEmail("");
+        setPassword("");
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <Box
       bg="#F7F9F9"
@@ -23,10 +40,16 @@ const LoginForm = () => {
     >
       <Heading>Login:</Heading>
       <br />
-      <form>
+      <form onSubmit={handleSubmit}>
         <FormControl isRequired>
           <FormLabel>email</FormLabel>
-          <Input bg="white" type="email" placeholder="email"></Input>
+          <Input
+            bg="white"
+            type="email"
+            placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          ></Input>
         </FormControl>
         <FormControl isRequired>
           <FormLabel mt={3}>password</FormLabel>
@@ -35,6 +58,8 @@ const LoginForm = () => {
               bg="white"
               type={show ? "text" : "password"}
               placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <InputRightElement width="4.5rem">
               <Button h="1.75rem" size="sm" onClick={() => setShow(!show)}>
