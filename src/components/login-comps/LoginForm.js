@@ -19,6 +19,7 @@ const LoginForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    axios.defaults.withCredentials = true;
     axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
         email: email,
