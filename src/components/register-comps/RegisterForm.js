@@ -21,6 +21,7 @@ const RegisterForm = () => {
   const [spin, setSpin] = useState(false);
   const [alertCard, setAlertCard] = useState(false);
   const [errorStatus, setErrorStatus] = useState(false);
+  const [networkError, setNetworkError] = useState(false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -55,7 +56,11 @@ const RegisterForm = () => {
         setPassword("");
         setSpin(false);
       })
-      .catch((err) => console.log(`axios error: ${err}`));
+      .catch((err) => {
+        setAlertCard(true);
+        setNetworkError(true);
+        setSpin(false);
+      });
   };
   return (
     <Box
@@ -67,29 +72,47 @@ const RegisterForm = () => {
     >
       <Heading>Register:</Heading>
       <br />
-      {alertCard &&
-        (errorStatus ? (
-          <div>
-            <Alert borderRadius="20px" status="error">
-              <AlertIcon />
-              <span>This email already exists!</span>
-            </Alert>
-            <br />
-          </div>
-        ) : (
-          <div>
-            <Alert borderRadius="20px" status="success">
-              <AlertIcon />
-              <span>
-                Registred!{" "}
-                <Link color="#6656CA" href="/login">
-                  Log in here
-                </Link>
-              </span>
-            </Alert>
-            <br />
-          </div>
-        ))}
+      {(() => {
+        if (alertCard) {
+          if (networkError) {
+            return (
+              <div>
+                <Alert borderRadius="20px" status="error">
+                  <AlertIcon />
+                  <span>networkError! Try Again Later</span>
+                </Alert>
+                <br />
+              </div>
+            );
+          }
+          if (errorStatus) {
+            return (
+              <div>
+                <Alert borderRadius="20px" status="error">
+                  <AlertIcon />
+                  <span>This email already exists!</span>
+                </Alert>
+                <br />
+              </div>
+            );
+          } else if (!errorStatus) {
+            return (
+              <div>
+                <Alert borderRadius="20px" status="success">
+                  <AlertIcon />
+                  <span>
+                    Registred!{" "}
+                    <Link color="#6656CA" href="/login">
+                      Log in here
+                    </Link>
+                  </span>
+                </Alert>
+                <br />
+              </div>
+            );
+          }
+        }
+      })()}
 
       <form onSubmit={handleSubmit}>
         <FormControl isRequired>
