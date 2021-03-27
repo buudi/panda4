@@ -43,14 +43,17 @@ const RegisterForm = () => {
           daString.indexOf("duplicate key value violates unique constraint") !=
           -1
         ) {
+          setAlertCard(true);
           setErrorStatus(true);
+        } else {
+          setAlertCard(true);
+          setErrorStatus(false);
         }
         setName("");
         setEmail("");
         setRole("");
         setPassword("");
         setSpin(false);
-        setAlertCard(true);
       })
       .catch((err) => console.log(`axios error: ${err}`));
   };
