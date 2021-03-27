@@ -8,6 +8,8 @@ import {
   Heading,
   UnorderedList,
   ListItem,
+  Stack,
+  Skeleton,
 } from "@chakra-ui/react";
 
 export default function Home() {
@@ -34,11 +36,19 @@ export default function Home() {
         <Box>
           <Heading>List of Names:</Heading>
           <br />
-          <UnorderedList>
-            {data.map((names) => (
-              <ListItem key={names.id}>{names.name}</ListItem>
-            ))}
-          </UnorderedList>
+          {data.length != 0 ? (
+            <UnorderedList>
+              {data.map((names) => (
+                <ListItem key={names.id}>{names.name}</ListItem>
+              ))}
+            </UnorderedList>
+          ) : (
+            <Stack>
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+            </Stack>
+          )}
         </Box>
       </Center>
     </>
