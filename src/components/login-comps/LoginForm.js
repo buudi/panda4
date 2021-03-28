@@ -9,10 +9,14 @@ import {
   InputGroup,
   InputRightElement,
   Button,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 
 const LoginForm = () => {
   const [show, setShow] = useState(false);
+  const [successStatus, setSuccessStatus] = useState(false);
+  const [errorStatus, setErrorStatus] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,13 +25,21 @@ const LoginForm = () => {
     event.preventDefault();
     axios.defaults.withCredentials = true;
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+      .post("/api/login", {
         email: email,
         password: password,
       })
       .then((res) => {
         setEmail("");
         setPassword("");
+
+        if (res.data.res === "error") {
+          setErrorStatus(true);
+          setSuccessStatus(false);
+        } else {
+          setSuccessStatus(true);
+          setErrorStatus(false);
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -41,6 +53,24 @@ const LoginForm = () => {
     >
       <Heading>Login:</Heading>
       <br />
+      {successStatus && (
+        <div>
+          <Alert borderRadius="20px" status="success">
+            <AlertIcon />
+            <span>Logged In!</span>
+          </Alert>
+          <br />
+        </div>
+      )}
+      {errorStatus && (
+        <div>
+          <Alert borderRadius="20px" status="error">
+            <AlertIcon />
+            <span>Email or password Incorrect</span>
+          </Alert>
+          <br />
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
         <FormControl isRequired>
           <FormLabel>email</FormLabel>
