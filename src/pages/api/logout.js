@@ -23,6 +23,6 @@ export default async (req, res) => {
       })
     );
     res.statusCode = 200;
-    res.json({ success: "logged Out" });
+    res.json({ success: true });
   }
 };
