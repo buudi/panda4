@@ -17,7 +17,7 @@ export default async (req, res) => {
         path: '/'
       })
     );
-    if (cookieExists) {
+    if (req.cookie.session_id) {
       res.json({ msg: "failed" });
     } else {
       res.json({ success: true })
