@@ -3,6 +3,7 @@ import axios from "axios";
 
 export default async (req, res) => {
   const cookieExists = req.cookies.session_id;
+  let axiosMsg;
   if (!cookieExists) {
     res.statusCode = 200;
     res.json({ msg: "already Logged Out" });
@@ -20,10 +21,10 @@ export default async (req, res) => {
       .post(`${process.env.NEXT_PUBLIC_API_URL}/logout`, {
         session_id: cookieExists,
       })
-      .then((res) => console.log("axios succeeded"))
+      .then((res) => axiosMsg = res.data)
       .catch((err) => alert(`axios error:\n ${err}`));
 
     res.statusCode = 200;
-    res.json({ success: true });
+    res.json({ success: true, axiosMsg: axiosMsg });
   }
 };
