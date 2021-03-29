@@ -1,8 +1,9 @@
 import Nav from "./Nav";
-const Main = () => {
+const Main = ({ children }) => {
   return (
     <>
       <Nav />
+      {children}
     </>
   );
 };

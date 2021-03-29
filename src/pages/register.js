@@ -5,7 +5,6 @@ import { Center } from "@chakra-ui/react";
 const Register = () => {
   return (
     <>
-      <Main />
       <Center h="100vh">
         <RegisterForm />
       </Center>

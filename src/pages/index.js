@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Main from "../components/Main";
 import {
   Box,
   Center,
@@ -31,7 +30,6 @@ export default function Home() {
         <title>PANDA CMS</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Main />
       <Center h="100vh">
         <Box>
           <Heading>List of Names:</Heading>
