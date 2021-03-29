@@ -11,7 +11,7 @@ export default async (req, res) => {
       "Set-Cookie",
       cookie.serialize("session_id", "", {
         httpOnly: true,
-        maxAge: new Date(0),
+        maxAge: 0,
         sameSite: "strict",
         path: "/",
       })
