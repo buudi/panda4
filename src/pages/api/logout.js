@@ -11,7 +11,7 @@ export default async (req, res) => {
     res.setHeader(
       "Set-Cookie",
       cookie.serialize("session_id", "", {
-        maxAge: 0,
+        expires: new Date(0),
       })
     );
     await axios
