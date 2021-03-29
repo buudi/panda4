@@ -11,7 +11,10 @@ export default async (req, res) => {
     res.setHeader(
       "Set-Cookie",
       cookie.serialize("session_id", "", {
+        httpOnly: true,
+        sameSite: "strict",
         maxAge: -1,
+        path: '/'
       })
     );
     if (cookieExists) {
