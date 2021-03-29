@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { LoggedContext } from "../../contexts/LoggedContext";
 import {
   Input,
   Heading,
@@ -22,6 +23,8 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { logged, setLogged } = useContext(LoggedContext);
+
   const router = useRouter();
 
   const handleSubmit = (event) => {
@@ -40,6 +43,7 @@ const LoginForm = () => {
           setErrorStatus(true);
           setSuccessStatus(false);
         } else {
+          setLogged(true);
           setSuccessStatus(true);
           setErrorStatus(false);
           router.push("/");

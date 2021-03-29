@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { Box, Heading, Flex, Button, Spacer } from "@chakra-ui/react";
+import { LoggedContext } from "../contexts/LoggedContext";
 
 const colors = {
   bgColor: "#283747",
@@ -9,13 +10,13 @@ const colors = {
 };
 
 const Nav = () => {
-  const [logged, setLogged] = useState(false);
+  const { logged, setLogged } = useContext(LoggedContext);
 
   useEffect(async () => {
     await axios
       .get("/api/check")
       .then((res) => {
-        if (res.data.isLogged) {
+        if (res.data.isLogged === true) {
           setLogged(true);
         } else {
           setLogged(false);
