@@ -12,7 +12,7 @@ export default async (req, res) => {
         session_id: cookieExists,
       })
       .then((res) => console.log("axios succeeded"))
-      .catch((err) => console.log(`axios error:\n ${err}`));
+      .catch((err) => alert(`axios error:\n ${err}`));
     res.setHeader(
       "Set-Cookie",
       cookie.serialize("session_id", "", {
