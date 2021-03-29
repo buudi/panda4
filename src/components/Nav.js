@@ -35,7 +35,7 @@ const Nav = () => {
           setLogged(false);
         }
       })
-      .catch((err) => console.log(`axios handle Logout error: ${err}`));
+      .catch((err) => alert(`axios handle Logout error: ${err}`));
   };
 
   return (
