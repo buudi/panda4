@@ -7,12 +7,6 @@ export default async (req, res) => {
     res.statusCode = 200;
     res.json({ msg: "already Logged Out" });
   } else {
-    await axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/logout`, {
-        session_id: cookieExists,
-      })
-      .then((res) => console.log("axios succeeded"))
-      .catch((err) => alert(`axios error:\n ${err}`));
     res.setHeader(
       "Set-Cookie",
       cookie.serialize("session_id", "", {
@@ -22,6 +16,13 @@ export default async (req, res) => {
         path: "/",
       })
     );
+    await axios
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/logout`, {
+        session_id: cookieExists,
+      })
+      .then((res) => console.log("axios succeeded"))
+      .catch((err) => alert(`axios error:\n ${err}`));
+
     res.statusCode = 200;
     res.json({ success: true });
   }
