@@ -8,7 +8,7 @@ export default async (req, res) => {
     res.statusCode = 200;
     res.json({ msg: "already Logged Out" });
   } else {
-    res.setHeader(
+    await res.setHeader(
       "Set-Cookie",
       cookie.serialize("session_id", "", {
         httpOnly: true,
@@ -20,7 +20,7 @@ export default async (req, res) => {
     if (cookieExists) {
       res.json({ msg: "failed" });
     } else {
-      res.json({ msg: "logout successful" })
+      res.json({ success: true })
     }
   }
 };
