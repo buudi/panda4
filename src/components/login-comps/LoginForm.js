@@ -27,30 +27,6 @@ const LoginForm = () => {
 
   const router = useRouter();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    axios.defaults.withCredentials = true;
-    axios
-      .post("/api/login", {
-        email: email,
-        password: password,
-      })
-      .then((res) => {
-        setEmail("");
-        setPassword("");
-
-        if (res.data.res === "error") {
-          setErrorStatus(true);
-          setSuccessStatus(false);
-        } else {
-          setLogged(true);
-          setSuccessStatus(true);
-          setErrorStatus(false);
-          router.push("/");
-        }
-      })
-      .catch((err) => console.log(err));
-  };
   return (
     <Box
       bg="#F7F9F9"
@@ -79,7 +55,7 @@ const LoginForm = () => {
           <br />
         </div>
       )}
-      <form onSubmit={handleSubmit}>
+      <form>
         <FormControl isRequired>
           <FormLabel>email</FormLabel>
           <Input
@@ -107,7 +83,7 @@ const LoginForm = () => {
             </InputRightElement>
           </InputGroup>
         </FormControl>
-        <Button type="submit" mt={6} colorScheme="blue">
+        <Button mt={6} colorScheme="blue">
           Login
         </Button>
       </form>

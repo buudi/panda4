@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import axios from "axios";
 import Link from "next/link";
 import { Box, Heading, Flex, Button, Spacer } from "@chakra-ui/react";
 import { LoggedContext } from "../contexts/LoggedContext";
@@ -11,32 +10,6 @@ const colors = {
 
 const Nav = () => {
   const { logged, setLogged } = useContext(LoggedContext);
-
-  useEffect(async () => {
-    await axios
-      .get("/api/check")
-      .then((res) => {
-        if (res.data.isLogged === true) {
-          setLogged(true);
-        } else {
-          setLogged(false);
-        }
-      })
-      .catch((err) => {
-        console.log(`axios nav error: ${err}`);
-      });
-  }, [logged]);
-
-  const handleLogout = async () => {
-    await axios
-      .get("/api/logout")
-      .then((res) => {
-        if (res.data.success) {
-          setLogged(false);
-        }
-      })
-      .catch((err) => console.log(`axios handle Logout error: ${err}`));
-  };
 
   return (
     <Box bg={colors.bgColor} w="100%" p={4} color="white">
@@ -57,7 +30,6 @@ const Nav = () => {
               _hover={{ background: "#D6C21D", color: colors.btnBg }}
               mr={4}
               variant="outline"
-              onClick={handleLogout}
             >
               Logout
             </Button>
