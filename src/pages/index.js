@@ -9,6 +9,7 @@ import {
   ListItem,
   Stack,
   Skeleton,
+  Button
 } from "@chakra-ui/react";
 
 export default function Home() {
@@ -24,6 +25,23 @@ export default function Home() {
       });
   }, []);
 
+  const handleCheck = async () => {
+    const userData = localStorage.getItem("user-data");
+    await axios
+      .post('/api/check', {
+        data: userData
+      })
+      .then(res => {
+        if (res.data.success) {
+          console.log("logged in");
+        } else {
+          console.log(res.data.msg);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   return (
     <>
       <Head>
@@ -49,6 +67,10 @@ export default function Home() {
           )}
         </Box>
       </Center>
+      <Box>
+        <Heading>check logged:</Heading>
+        <Button onClick={handleCheck}>Check</Button>
+      </Box>
     </>
   );
 }

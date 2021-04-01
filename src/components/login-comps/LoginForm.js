@@ -19,6 +19,7 @@ const LoginForm = () => {
   const [show, setShow] = useState(false);
   const [successStatus, setSuccessStatus] = useState(false);
   const [errorStatus, setErrorStatus] = useState(false);
+  const [networkError, setNetworkError] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,6 +28,39 @@ const LoginForm = () => {
 
   const router = useRouter();
 
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    await axios.post('/api/login', {
+      email: email,
+      password: password
+    })
+      .then(res => {
+        if (res.data.success === true) {
+          const userData = {
+            email: res.data.email,
+            session_id: res.data.session_id
+          };
+          localStorage.setItem("user-data", JSON.stringify(userData));
+          setSuccessStatus(true);
+          setErrorStatus(false);
+          setNetworkError(false);
+          setLogged(true);
+          setEmail("");
+          setPassword("");
+        } else if (res.data.msg === "falseCreds") {
+          setErrorStatus(true);
+          setSuccessStatus(false);
+          setNetworkError(false);
+        } else {
+          setNetworkError(true);
+          setSuccessStatus(false);
+          setErrorStatus(false);
+        }
+      })
+      .catch(err => {
+        console.log("axios error");
+      });
+  };
   return (
     <Box
       bg="#F7F9F9"
@@ -55,7 +89,16 @@ const LoginForm = () => {
           <br />
         </div>
       )}
-      <form>
+      {networkError && (
+        <div>
+          <Alert borderRadius="20px" status="error">
+            <AlertIcon />
+            <span>Failed: Network Error!</span>
+          </Alert>
+          <br />
+        </div>
+      )}
+      <form onSubmit={handleLogin}>
         <FormControl isRequired>
           <FormLabel>email</FormLabel>
           <Input
@@ -83,7 +126,7 @@ const LoginForm = () => {
             </InputRightElement>
           </InputGroup>
         </FormControl>
-        <Button mt={6} colorScheme="blue">
+        <Button type="submit" mt={6} colorScheme="blue">
           Login
         </Button>
       </form>

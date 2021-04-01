@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { Box, Heading, Flex, Button, Spacer } from "@chakra-ui/react";
 import { LoggedContext } from "../contexts/LoggedContext";
+import axios from "axios";
 
 const colors = {
   bgColor: "#283747",
@@ -10,7 +11,37 @@ const colors = {
 
 const Nav = () => {
   const { logged, setLogged } = useContext(LoggedContext);
+  useEffect(async () => {
+    const userData = localStorage.getItem("user-data");
+    await axios
+      .post('/api/check', {
+        data: userData
+      })
+      .then(res => {
+        if (res.data.success === true) {
+          setLogged(true);
+        } else {
+          setLogged(false);
+        }
+      })
+      .catch(err => {
+        setLogged(false);
+      });
+  }, [logged]);
 
+  const handleLogout = async () => {
+    await axios
+      .get('/api/logout')
+      .then(res => {
+        if (res.data.success === true) {
+          localStorage.removeItem("user-data");
+          setLogged(false);
+        }
+      })
+      .catch(err => {
+        console.log('you should not be able to see this');
+      });
+  };
   return (
     <Box bg={colors.bgColor} w="100%" p={4} color="white">
       <Flex>
@@ -30,6 +61,7 @@ const Nav = () => {
               _hover={{ background: "#D6C21D", color: colors.btnBg }}
               mr={4}
               variant="outline"
+              onClick={handleLogout}
             >
               Logout
             </Button>
