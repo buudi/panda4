@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Box, Heading, Flex, Button, Spacer } from "@chakra-ui/react";
