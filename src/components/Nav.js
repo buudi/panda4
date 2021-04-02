@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { Box, Heading, Flex, Button, Spacer } from "@chakra-ui/react";
 import { LoggedContext } from "../contexts/LoggedContext";
 import axios from "axios";
@@ -8,6 +9,7 @@ const colors = {
   bgColor: "#283747",
   btnBg: "#524D1C",
 };
+
 
 const Nav = () => {
   const { logged, setLogged } = useContext(LoggedContext);
@@ -29,6 +31,8 @@ const Nav = () => {
       });
   }, [logged]);
 
+  const router = useRouter();
+
   const handleLogout = async () => {
     await axios
       .get('/api/logout')
@@ -36,6 +40,7 @@ const Nav = () => {
         if (res.data.success === true) {
           localStorage.removeItem("user-data");
           setLogged(false);
+          router.push('/');
         }
       })
       .catch(err => {

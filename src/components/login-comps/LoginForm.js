@@ -13,6 +13,7 @@ import {
   Button,
   Alert,
   AlertIcon,
+  Spinner
 } from "@chakra-ui/react";
 
 const LoginForm = () => {
@@ -20,6 +21,8 @@ const LoginForm = () => {
   const [successStatus, setSuccessStatus] = useState(false);
   const [errorStatus, setErrorStatus] = useState(false);
   const [networkError, setNetworkError] = useState(false);
+
+  const [spin, setSpin] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,6 +32,7 @@ const LoginForm = () => {
   const router = useRouter();
 
   const handleLogin = async (event) => {
+    setSpin(true);
     event.preventDefault();
     await axios.post('/api/login', {
       email: email,
@@ -47,18 +51,23 @@ const LoginForm = () => {
           setLogged(true);
           setEmail("");
           setPassword("");
+          setSpin(false);
         } else if (res.data.msg === "falseCreds") {
           setErrorStatus(true);
           setSuccessStatus(false);
           setNetworkError(false);
+          setSpin(false);
         } else {
           setNetworkError(true);
           setSuccessStatus(false);
           setErrorStatus(false);
+          setSpin(false);
+
         }
       })
       .catch(err => {
         console.log("axios error");
+        setSpin(false);
       });
   };
   return (
@@ -127,7 +136,7 @@ const LoginForm = () => {
           </InputGroup>
         </FormControl>
         <Button type="submit" mt={6} colorScheme="blue">
-          Login
+          {spin ? (<Spinner />) : (<>Login</>)}
         </Button>
       </form>
     </Box>
