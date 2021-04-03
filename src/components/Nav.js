@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Box, Heading, Flex, Button, Spacer, ColorModeScript } from "@chakra-ui/react";
+import { Box, Heading, Flex, Button, Spacer } from "@chakra-ui/react";
 import { LoggedContext } from "../contexts/LoggedContext";
 import axios from "axios";
 
