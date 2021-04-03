@@ -8,13 +8,13 @@ const sha = () => {
     const [page, setPage] = useState("dashboard");
     return (
         <ShellContext.Provider value={{ page, setPage }}>
-            <Grid h="100vh" templateColumns="repeat(20, 1fr)">
+            <Grid h="100vh" templateColumns="repeat(16, 1fr)">
                 {/* Sidebar */}
-                <GridItem colSpan={2} bg="blue.700">
+                <GridItem colSpan={2} bg="#6A75CA">
                     <Sidebar />
                 </GridItem>
                 {/* Page Shell */}
-                <GridItem colSpan={18} bg="#F0F5F9">
+                <GridItem colSpan={14} bg="#F6F7FC">
                     <Shell />
                 </GridItem>
             </Grid>

@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Text } from "@chakra-ui/react";
 
 const daButton = ({ children, active, onClick }) => {
     return (
@@ -9,22 +9,22 @@ const daButton = ({ children, active, onClick }) => {
                 mt={2}
                 mb={2}
                 borderRadius={0}
-                bg="blue.700"
+                bg="#d5d8eb"
                 color="white"
                 onClick={onClick}
-                _hover={{ color: "black", bg: "#E5E7E9" }}
-                _active={{ color: "black", bg: "#E5E7E9" }}
+                _hover={{ color: "white", bg: "#dcdde0" }}
+                _active={{ color: "white", bg: "#6A75CA" }}
             >
-                {children}
+                <Text fontSize="lg">{children}</Text>
             </Button>) : (<Button
                 width="100%"
                 onClick={onClick}
                 mt={2}
                 mb={2}
                 borderRadius={0}
-                bg="blue.700"
-                color="white"
-                _hover={{ color: "black", bg: "#E5E7E9" }}
+                bg="#6A75CA"
+                color="#dcdde0"
+                _hover={{ color: "white", bg: "#848dcf" }}
             >
                 {children}
             </Button>)}

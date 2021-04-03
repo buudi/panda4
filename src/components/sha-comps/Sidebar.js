@@ -4,7 +4,7 @@ import ShellContext from "../../contexts/ShellContext";
 
 const Sidebar = () => {
     const { page, setPage } = useContext(ShellContext);
-    const [dash, setdash] = useState(false);
+    const [dash, setdash] = useState(true);
     const [users, setUsers] = useState(false);
     return (
         <>

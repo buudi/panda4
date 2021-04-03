@@ -1,13 +1,13 @@
 import { useEffect, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Box, Heading, Flex, Button, Spacer } from "@chakra-ui/react";
+import { Box, Heading, Flex, Button, Spacer, ColorModeScript } from "@chakra-ui/react";
 import { LoggedContext } from "../contexts/LoggedContext";
 import axios from "axios";
 
 const colors = {
-  bgColor: "#283747",
-  btnBg: "#524D1C",
+  bgColor: "white",
+  btnBg: "purple.700",
 };
 
 
@@ -48,12 +48,12 @@ const Nav = () => {
       });
   };
   return (
-    <Box bg={colors.bgColor} w="100%" p={4} color="white">
+    <Box bg={colors.bgColor} h="60px" w="100%" p={4} color={colors.btnBg}>
       <Flex>
         <Box p="2">
           <Link href="/">
             <a>
-              <Heading size="md">Panda CMS</Heading>
+              <Heading size="sm">Panda CMS</Heading>
             </a>
           </Link>
         </Box>
@@ -61,9 +61,10 @@ const Nav = () => {
         {logged ? (
           <Box>
             <Button
-              color="#D6C21D"
+              size="sm"
+              color={colors.btnBg}
               border={0}
-              _hover={{ background: "#D6C21D", color: colors.btnBg }}
+              _hover={{ background: "#6A75CA", color: "white" }}
               mr={4}
               variant="outline"
               onClick={handleLogout}
@@ -75,9 +76,10 @@ const Nav = () => {
           <Box>
             <Link href="/login">
               <Button
-                color="#D6C21D"
+                size="sm"
+                color={colors.btnBg}
                 border={0}
-                _hover={{ background: "#D6C21D", color: colors.btnBg }}
+                _hover={{ background: "#6A75CA", color: "white" }}
                 mr={4}
                 variant="outline"
               >
@@ -85,7 +87,7 @@ const Nav = () => {
               </Button>
             </Link>
             <Link href="/register">
-              <Button bg="#D6C21D" color={colors.btnBg}>
+              <Button size="sm" bg="#6A75CA" color="white">
                 Register
               </Button>
             </Link>
