@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import NewNav from "../components/NewNav";
 import {
   Box,
   Center,
@@ -44,6 +45,7 @@ export default function Home() {
   };
   return (
     <>
+      <NewNav />
       <Head>
         <title>PANDA CMS</title>
         <link rel="icon" href="/favicon.ico" />
