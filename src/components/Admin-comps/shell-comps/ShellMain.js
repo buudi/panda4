@@ -5,7 +5,7 @@ import Products from "./products-page/Products";
 import { PageContext } from "../../../contexts/PageContext";
 
 const ToRender = () => {
-    const { page, setPage } = useContext(PageContext);
+    const { page } = useContext(PageContext);
     if (page === "users") {
         return (<Users />);
     } else if (page === "products") {

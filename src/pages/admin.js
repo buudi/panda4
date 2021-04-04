@@ -12,11 +12,11 @@ const Admin = () => {
     const [page, setPage] = useState("users");
     return (
         <PageContext.Provider value={{ page, setPage }}>
-            <SimpleGrid mt={10} mb={10} columns={10} spacing={10}>
+            <SimpleGrid mt={4} columns={13} spacing={10}>
                 <GridItem
-                    ml={10}
+                    ml={2}
                     bg={colors.bg}
-                    height="95vh"
+                    height="97vh"
                     borderRadius={20}
                     boxShadow="dark-lg"
                     colSpan={2}
@@ -25,8 +25,8 @@ const Admin = () => {
                 </GridItem>
                 <GridItem
                     mr={10}
-                    height="95vh"
-                    colSpan={8}
+                    height="97vh"
+                    colSpan={11}
                 >
                     <Shell />
                 </GridItem>

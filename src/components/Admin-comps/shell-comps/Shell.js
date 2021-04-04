@@ -1,4 +1,3 @@
-import { Box } from "@chakra-ui/react";
 import ShellNav from "./ShellNav";
 import ShellMain from "./ShellMain";
 
