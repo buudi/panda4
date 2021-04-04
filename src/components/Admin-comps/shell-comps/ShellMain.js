@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Box } from "@chakra-ui/react";
-import Users from "./Users";
-import Products from "./Products";
+import Users from "./Users-page/Users";
+import Products from "./products-page/Products";
 import { PageContext } from "../../../contexts/PageContext";
 
 const ToRender = () => {

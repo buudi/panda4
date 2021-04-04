@@ -1,9 +1,10 @@
 import { Center, Heading } from "@chakra-ui/react";
+import UsersTable from "./UsersTable";
 
 const Users = () => {
     return (
         <Center h="80vh">
-            <Heading>Users</Heading>
+            <UsersTable />
         </Center>
     );
 };
