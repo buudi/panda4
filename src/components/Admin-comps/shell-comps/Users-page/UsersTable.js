@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { UserDataContext } from "../../../../contexts/UserDataContext";
 import axios from "axios";
 import {
     Table,
@@ -12,7 +13,7 @@ import {
 
 
 const UsersTable = () => {
-    const [usersData, setUsersData] = useState();
+    const { usersData, setUsersData, setNetworkError } = useContext(UserDataContext);
     useEffect(async () => {
         await axios
             .get(`${process.env.NEXT_PUBLIC_API_URL}/api`)
@@ -20,7 +21,7 @@ const UsersTable = () => {
                 setUsersData(res.data);
             })
             .catch(err => {
-                console.log("network error");
+                setNetworkError(true);
             });
     }, []);
 
