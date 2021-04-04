@@ -5,22 +5,20 @@ const colors = {
     txtColor: "#D3D3FD"
 };
 
-const Button = ({ children, active }) => {
+const Button = ({ children, active, icon }) => {
     if (active) {
         return (
             <Box
                 as="button"
                 width="100%"
-                color={colors.txtColor}
+                h="40px"
+                color="white"
                 borderLeft="4px"
                 borderRadius="4px"
                 fontWeight="bold"
+                fontSize="xl"
             >
-                <Text
-                    fontSize="xl"
-                >
-                    {children}
-                </Text>
+                {children}
             </Box>
         );
     } else {
@@ -28,16 +26,14 @@ const Button = ({ children, active }) => {
             <Box
                 as="button"
                 width="100%"
+                h="40px"
                 color={colors.txtColor}
                 pl="4px"
                 fontWeight="bold"
+                fontSize="lg"
                 _hover={{ pr: "4px", borderLeft: "4px", borderRadius: "4px" }}
             >
-                <Text
-                    fontSize="lg"
-                >
-                    {children}
-                </Text>
+                {children}
             </Box>
         );
     }

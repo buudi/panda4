@@ -1,6 +1,13 @@
+import { Box } from "@chakra-ui/react";
+import ShellNav from "./ShellNav";
+
 const Shell = () => {
     return (
-        <h1>Shell</h1>
+        <>
+            <ShellNav />
+            <h1>Shell</h1>
+        </>
+
     );
 };
 
