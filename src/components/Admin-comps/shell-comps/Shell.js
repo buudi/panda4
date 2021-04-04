@@ -1,11 +1,12 @@
 import { Box } from "@chakra-ui/react";
 import ShellNav from "./ShellNav";
+import ShellMain from "./ShellMain";
 
 const Shell = () => {
     return (
         <>
             <ShellNav />
-            <h1>Shell</h1>
+            <ShellMain />
         </>
 
     );

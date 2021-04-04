@@ -1,6 +1,5 @@
 import { Box, Text, Center } from "@chakra-ui/react";
 
-
 const colors = {
     txtColor: "#D3D3FD"
 };

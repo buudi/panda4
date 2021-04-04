@@ -1,19 +1,32 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Heading, Center, Box } from "@chakra-ui/react";
 import Button from "./Button";
 import { FaUsers } from "react-icons/fa";
 import { ImPriceTags } from "react-icons/im";
-
+import { PageContext } from "../../../contexts/PageContext";
 
 const Sidebar = () => {
-    const [userActive, setUserActive] = useState(false);
+    const { page, setPage } = useContext(PageContext);
+    const [userActive, setUserActive] = useState(true);
     const [prodActive, setProdActive] = useState(false);
+
+    const setPageUser = () => {
+        setPage("users");
+        setUserActive(true);
+        setProdActive(false);
+    };
+    const setPageProducts = () => {
+        setPage("products");
+        setProdActive(true);
+        setUserActive(false);
+    };
+
     return (
         <>
             <Center mb={10} mt={6}>
                 <Heading fontSize="2xl" color="white">Panda CMS</Heading>
             </Center>
-            <Box onClick={() => setUserActive(!userActive)} mt={4}>
+            <Box onClick={setPageUser} mt={4}>
                 <Button active={userActive}>
                     <Center>
                         <FaUsers />
@@ -21,7 +34,7 @@ const Sidebar = () => {
                     </Center>
                 </Button>
             </Box>
-            <Box onClick={() => setProdActive(!prodActive)} mt={4}>
+            <Box onClick={setPageProducts} mt={4}>
                 <Button active={prodActive}>
                     <Center>
                         <ImPriceTags />
