@@ -9,6 +9,7 @@ import {
     Th,
     Td,
     Spinner,
+    Center
 } from "@chakra-ui/react";
 
 
@@ -26,7 +27,7 @@ const UsersTable = () => {
     }, []);
 
     return (
-        <>
+        <Center h="20vh">
             <Table variant="simple">
                 <Thead>
                     <Tr>
@@ -45,7 +46,7 @@ const UsersTable = () => {
                     ))) : (<Spinner />)}
                 </Tbody>
             </Table>
-        </>
+        </Center>
     );
 };
 

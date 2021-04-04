@@ -6,17 +6,17 @@ const CreateButton = () => {
             <GridItem h="100px" colSpan={2}>
             </GridItem>
             <GridItem h="100px" colSpan={2}>
-                <SimpleGrid spacing={5} columns={2}>
+                <SimpleGrid columns={2}>
                     <Box h="50px"></Box>
                     <Box h="50px"></Box>
                     <Box h="50px"></Box>
                     <Box h="50px">
-                        <SimpleGrid h="100%" columns={2} spacing={5}>
+                        <SimpleGrid h="100%" columns={2}>
                             <GridItem colSpan={1} h="100%"></GridItem>
                             <GridItem colSpan={1} h="100%">
                                 <Button leftIcon={<AddIcon />} w="100%" bg="#3D41D7" color="white" h="100%">
                                     Create User
-                                        </Button>
+                                </Button>
                             </GridItem>
                         </SimpleGrid>
                     </Box>
