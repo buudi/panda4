@@ -27,7 +27,7 @@ const UsersTable = () => {
     }, []);
 
     return (
-        <Center h="20vh">
+        <Center h={250}>
             <Table variant="simple">
                 <Thead>
                     <Tr>
