@@ -5,20 +5,20 @@ import Products from "./products-page/Products";
 import { PageContext } from "../../../contexts/PageContext";
 
 const ToRender = () => {
-    const { page } = useContext(PageContext);
-    if (page === "users") {
-        return (<Users />);
-    } else if (page === "products") {
-        return (<Products />);
-    }
+  const { page } = useContext(PageContext);
+  if (page === "users") {
+    return <Users />;
+  } else if (page === "products") {
+    return <Products />;
+  }
 };
 
 const ShellMain = () => {
-    return (
-        <Box w="100%" h="80vh" borderRadius={20}>
-            <ToRender />
-        </Box>
-    );
+  return (
+    <Box w="100%" h="80vh" borderRadius={20}>
+      <ToRender />
+    </Box>
+  );
 };
 
 export default ShellMain;

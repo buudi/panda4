@@ -10,23 +10,22 @@ const colors = {
   btnBg: "purple.700",
 };
 
-
 const Nav = () => {
   const { logged, setLogged } = useContext(LoggedContext);
   useEffect(async () => {
     const userData = localStorage.getItem("user-data");
     await axios
-      .post('/api/check', {
-        data: userData
+      .post("/api/check", {
+        data: userData,
       })
-      .then(res => {
+      .then((res) => {
         if (res.data.success === true) {
           setLogged(true);
         } else {
           setLogged(false);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         setLogged(false);
       });
   }, [logged]);
@@ -35,16 +34,16 @@ const Nav = () => {
 
   const handleLogout = async () => {
     await axios
-      .get('/api/logout')
-      .then(res => {
+      .get("/api/logout")
+      .then((res) => {
         if (res.data.success === true) {
           localStorage.removeItem("user-data");
           setLogged(false);
-          router.push('/');
+          router.push("/");
         }
       })
-      .catch(err => {
-        console.log('you should not be able to see this');
+      .catch((err) => {
+        console.log("you should not be able to see this");
       });
   };
   return (
