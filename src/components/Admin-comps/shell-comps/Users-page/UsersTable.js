@@ -1,5 +1,6 @@
 import { useEffect, useContext } from "react";
 import { UserDataContext } from "../../../../contexts/UserDataContext";
+import ActionButtons from "./ActionButtons";
 import axios from "axios";
 import {
   Table,
@@ -27,6 +28,12 @@ const UsersTable = () => {
       });
   }, [updateComp]);
 
+  const returnRole = (user) => {
+    if (user.role === 1) return "Admin";
+    if (user.role === 2) return "Moderator";
+    if (user.role === 3) return "Reviewer";
+  };
+
   return (
     <Center h={250}>
       <Table variant="simple">
@@ -34,7 +41,8 @@ const UsersTable = () => {
           <Tr>
             <Th>Name</Th>
             <Th>Email</Th>
-            <Th isNumeric>Role</Th>
+            <Th>Role</Th>
+            <Th isNumeric>Actions</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -43,7 +51,10 @@ const UsersTable = () => {
               <Tr key={user.id}>
                 <Td>{user.name}</Td>
                 <Td>{user.email}</Td>
-                <Td isNumeric>{user.role}</Td>
+                <Td>{returnRole(user)}</Td>
+                <Th isNumeric>
+                  <ActionButtons />
+                </Th>
               </Tr>
             ))
           ) : (
