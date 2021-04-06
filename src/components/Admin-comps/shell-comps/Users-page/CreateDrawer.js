@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
+import { UserDataContext } from "../../../../contexts/UserDataContext";
 import {
+  Center,
   Button,
   Drawer,
   DrawerOverlay,
@@ -27,6 +29,8 @@ function CreateDrawer({ isOpen, firstField, onClose, onOpen }) {
   const [alertCard, setAlertCard] = useState(false);
   const [errorStatus, setErrorStatus] = useState(false);
   const [networkError, setNetworkError] = useState(false);
+
+  const { setUpdateComp } = useContext(UserDataContext);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -60,6 +64,7 @@ function CreateDrawer({ isOpen, firstField, onClose, onOpen }) {
         setRole("");
         setPassword("");
         setSpin(false);
+        setUpdateComp("update");
       })
       .catch((err) => {
         setAlertCard(true);
@@ -82,7 +87,7 @@ function CreateDrawer({ isOpen, firstField, onClose, onOpen }) {
               if (networkError) {
                 return (
                   <div>
-                    <Alert borderRadius="20px" status="error">
+                    <Alert w="20%" borderRadius="20px" status="error">
                       <AlertIcon />
                       <span>networkError! Try Again Later</span>
                     </Alert>
@@ -93,7 +98,7 @@ function CreateDrawer({ isOpen, firstField, onClose, onOpen }) {
               if (errorStatus) {
                 return (
                   <div>
-                    <Alert borderRadius="20px" status="error">
+                    <Alert w="20%" borderRadius="20px" status="error">
                       <AlertIcon />
                       <span>This email already exists!</span>
                     </Alert>
@@ -102,18 +107,13 @@ function CreateDrawer({ isOpen, firstField, onClose, onOpen }) {
                 );
               } else if (!errorStatus) {
                 return (
-                  <div>
-                    <Alert borderRadius="20px" status="success">
+                  <Center>
+                    <Alert w="20%" borderRadius="20px" status="success">
                       <AlertIcon />
-                      <span>
-                        Registred!{" "}
-                        <Link color="#6656CA" href="/login">
-                          Log in here
-                        </Link>
-                      </span>
+                      <span>Registred! </span>
                     </Alert>
                     <br />
-                  </div>
+                  </Center>
                 );
               }
             }

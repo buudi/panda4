@@ -17,13 +17,20 @@ import CreateDrawer from "./CreateDrawer";
 const Users = () => {
   const [usersData, setUsersData] = useState();
   const [networkError, setNetworkError] = useState(false);
+  const [updateComp, setUpdateComp] = useState("");
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = useRef();
 
   return (
     <UserDataContext.Provider
-      value={{ usersData, setUsersData, setNetworkError }}
+      value={{
+        usersData,
+        setUsersData,
+        setNetworkError,
+        updateComp,
+        setUpdateComp,
+      }}
     >
       <Box>
         {networkError && (

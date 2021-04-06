@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 
 const UsersTable = () => {
-  const { usersData, setUsersData, setNetworkError } = useContext(
+  const { usersData, setUsersData, setNetworkError, updateComp } = useContext(
     UserDataContext
   );
   useEffect(async () => {
@@ -25,7 +25,7 @@ const UsersTable = () => {
       .catch((err) => {
         setNetworkError(true);
       });
-  }, []);
+  }, [updateComp]);
 
   return (
     <Center h={250}>
