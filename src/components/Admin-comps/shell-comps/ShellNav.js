@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { PageContext } from "../../../contexts/PageContext";
 import {
   Box,
   SimpleGrid,
@@ -11,6 +13,15 @@ import { FiSettings } from "react-icons/fi";
 import styles from "../../../styles/Home.module.css";
 
 const ShellNav = () => {
+  const { page } = useContext(PageContext);
+  const toRender = () => {
+    if (page === "users") {
+      return "Users";
+    } else if (page === "products") {
+      return "Products";
+    }
+  };
+
   return (
     <SimpleGrid w="100%" h="120px" columns={6}>
       <GridItem colSpan={4}>
@@ -18,7 +29,7 @@ const ShellNav = () => {
           <div className={styles.apply_font}>
             <Text pt={4}>Hello Abdullah, Welcome Back</Text>
             <Text mb={4} fontWeight="hairline" fontSize="5xl">
-              Your Dashboard is updated
+              {toRender()}
             </Text>
           </div>
         </Box>
