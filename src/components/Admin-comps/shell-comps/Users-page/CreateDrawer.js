@@ -30,7 +30,7 @@ function CreateDrawer({ isOpen, firstField, onClose, onOpen }) {
   const [errorStatus, setErrorStatus] = useState(false);
   const [networkError, setNetworkError] = useState(false);
 
-  const { setUpdateComp } = useContext(UserDataContext);
+  const { setUpdateComp, updateComp } = useContext(UserDataContext);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -64,7 +64,7 @@ function CreateDrawer({ isOpen, firstField, onClose, onOpen }) {
         setRole("");
         setPassword("");
         setSpin(false);
-        setUpdateComp("update");
+        setUpdateComp(!updateComp);
       })
       .catch((err) => {
         setAlertCard(true);
